@@ -1,12 +1,179 @@
 <!DOCTYPE html>
-<html>
-   <head>
-      <title>个人博客主页</title>
-   </head>
-  <body>
-    <a href="https://www.bilibili.com">
-        <h1>个人博客</h1>  
-    </a>
-  </body>
-</html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>学习使我快乐</title>
+	<style type="text/css">
+		body{
+			background-image: url(http://pic.netbian.com/uploads/allimg/200511/234750-158921207008d8.jpg);background-repeat: no-repeat;
+			background-size: 100%;
+		}
+		.sear{
+			outline:none;
+			color: white;
+			background-color:transparent;
+		}
+		.ba{
+			transition: left;
+			position: fixed;
+			width: 190px;
+			height: 36px;
+			left: 6px;
+			background-color:transparent;
+			color: white;
+			border-color: white;
+			border-width: 1px;
+			border-radius: 4px;
 
+		}
+		#hidden{
+			width: 100%;
+			height: 587px;
+			overflow-x: hidden;
+			overflow-y: hidden;
+		}
+		#search{
+			position: fixed;
+			width: 166px;
+			height: 28px;
+			border-width: 1px;
+			border-radius: 6px;
+			border-bottom-right-radius: 0px;
+			border-top-right-radius: 0px; 
+			border-color: white;
+			top: 16px;
+			left:430px;
+		}
+		#submits{
+			position: fixed;
+			border-width: 1px;
+			border-radius: 4px;
+			border-color: white;
+			border-bottom-left-radius: 0px;
+			border-top-left-radius: 0px; 
+			width: 46px;height: 33px;
+			left:604px; top: 16px;
+		}
+		#tops{
+			position: fixed;
+			top: 320px;
+			right: 20px;
+		}
+		#bottoms{
+			position: fixed;
+			top: 390px;
+			right: 20px;
+		}
+		#videoJpanel{
+			position: fixed;
+			transition: top;
+			transition-duration: 1s;
+			border: 4px;
+			border-radius: 4px;
+			border-style: solid;
+			width: 100%; height: 597px;
+			background-color: rgba(235,237,232,0.3);
+			left:0px;
+			top: 650px;
+			overflow-y: hidden;
+		}
+		#setpreload{
+			
+		}
+		#setback{
+			transition-duration: 500ms;
+			top:140px;
+		}
+		#settype{
+			transition-duration: 800ms;
+			top:286px;
+
+		}
+		#close{
+			transition-duration: 600ms;
+			top:196px;
+		}
+		#test_a{
+			transition-duration: 1000ms;
+			top:340px;
+		}
+		#test_b{
+			transition-duration:1100ms;
+			top:396px;
+		}
+		td{
+			width: 336px;
+			height: 336px;
+			background-color: black;
+		}
+	</style>
+</head>
+<body>
+	<nav id="searchs">
+		<input type="text" required="" name="searchs" id="search"  class="sear">
+		<input type="submit" value="搜索" id="submits" class="sear">
+	</nav>
+	<a href="https://www.51zxw.net/list.aspx?cid=752" target="_blank"><input type="button" value="文字篇" id="setback" class="ba"></a>
+	<a href="https://www.51zxw.net/list.aspx?cid=861" target="_blank"><input type="button" value="演示篇" id="close"   class="ba"></a>
+	<a href="https://www.51zxw.net/list.aspx?cid=785" target="_blank"><input type="button" value="表格篇" id="settype" class="ba"></a>
+	<a href="https://www.51zxw.net/List.aspx?cid=630#!fenye=1" target="_blank"><input type="button" value="图像篇" id="test_a" class="ba"></a>
+	<a href="https://www.51zxw.net/list.aspx?cid=729#!fenye=1" target="_blank"><input type="button" value="剪辑篇"" id="test_b" class="ba"></a>
+	<!--70px-->
+	<div id="hidden">	
+		<div id="videoJpanel">
+			<iframe src="https://www.bilibili.com/" frameborder="0" name="videos" width="100%" height="597" domain='baidu'></iframe>
+		</div>
+	</div>
+	<img src="./IMG/KT.GIF" alt="" width="60" height="60" id="tops">
+	<img src="./IMG/KB.GIF" alt="" width="60" height="60" id="bottoms">
+		<script>
+			var bls=true;
+			var zillion=0;
+			//get标签
+			function get(id){
+			var a=document.getElementById(id);
+			return a;
+			}
+			//上
+			function tops(){
+				bls=false;
+				get('videoJpanel').style.top="56px";
+				get('tops').src="IMG/KT_A.GIF";
+				get('bottoms').src="IMG/KT_B.GIF";
+				 listright();
+			}
+			//下
+			function bottoms(){
+				bls=true;
+				get('videoJpanel').style.top="800px";
+				get('tops').src="IMG/KT.GIF";
+				get('bottoms').src="IMG/KB.GIF";
+				 listleft();
+			}
+			//list 设置  左移动动画
+			function listright(){
+				get('setback').style.left="-190px";
+				get('close').style.left="-190px";
+				get('settype').style.left="-190px";
+				get('test_a').style.left="-190px";
+				get('test_b').style.left="-190px";
+			}
+			//list 设置  右移动动画
+			function listleft() {
+				get('setback').style.left="6px";
+				get('close').style.left="6px";
+				get('settype').style.left="6px";
+				get('test_a').style.left="6px";
+				get('test_b').style.left="6px";
+			}
+
+			//延时调用
+			setTimeout(bottoms,6000);
+			 tops()
+			//添加事件
+			get('tops').onclick=tops;
+			get('bottoms').onclick=bottoms;
+			get('setback').onclick=setbackimg;
+		</script>
+</body>
+</html>
